@@ -1,0 +1,72 @@
+<div class="flex-container">
+  <div style="text-align:center" *ngIf="isLoading">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+  <div class="alert alert-danger" *ngIf="error">
+    <p>{{ error }}</p>
+  </div> 
+  <div class="row" *ngIf="!isLoading && !isGameOver">
+    <span>Score: {{score}}</span>
+  </div>
+  <div class="row" *ngIf="!isLoading && !isGameOver">
+    <div class="example-button-row">
+      <div class="example-flex-container">
+        <div class="example-button-container">
+          <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
+            {{userAnswers.length + 1}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row question" style="margin-top: 20px; margin-bottom: 20px;" *ngIf="!isLoading && !isGameOver && questionsAnswers != undefined">
+    <p [innerHTML]="questionsAnswers![this.userAnswers.length].question"></p>
+  </div>
+  <div class="container" *ngIf="!isLoading && !isGameOver && questionsAnswers != undefined">
+    <div 
+      fxLayout="row wrap" 
+      fxLayoutGap="16px grid" 
+      style="width: 800px; height: 75px;">
+      <div class="answer" fxFlex="50%" *ngFor="let answer of questionsAnswers![this.userAnswers.length].answers; let i = index" (click)="onAnswering(i)">
+        <mat-card class="card" style="cursor: pointer;">
+          <mat-card-content [innerHTML]="answer">
+            
+          </mat-card-content>
+        </mat-card>
+    </div>
+    </div>
+  </div>
+  <div class="container" *ngIf="isGameOver">
+    <div 
+        fxLayout="row wrap" 
+        fxLayoutGap="16px grid" 
+        style="width: 800px; height: 75px;">
+        <div class="ranking" fxFlex="75%" (click)="onViewRank()">
+          <button mat-stroked-button color="warn">
+            You are obtain {{score}}/{{questionsAnswers!.length}}
+          </button>
+          <!-- <mat-card class="card" style="cursor: pointer;">
+            <mat-card-content>
+              
+            </mat-card-content>
+          </mat-card> -->
+        </div>
+        <div class="ranking" fxFlex="75%" (click)="onViewRank()">
+          <mat-card class="card" style="cursor: pointer;">
+            <mat-card-content>
+              Check your ranking
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div class="ranking" fxFlex="75%" (click)="onRestart()">
+          <mat-card class="card" style="cursor: pointer;">
+            <mat-card-content>
+              Make an another quiz
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+  </div>
+</div>
+<!-- <div class="container" *ngIf="isGameOver">
+</div> -->

@@ -1,0 +1,51 @@
+<div class="container">
+  <mat-card >
+    <mat-card-title>{{!isLoginMode ? 'Login' : 'Sign Up'}}</mat-card-title>
+    <mat-card-subtitle>Please enter your connection access</mat-card-subtitle>
+    <mat-card-subtitle style="color: rgb(240, 23, 23);" *ngIf="error">{{ error }}</mat-card-subtitle>
+    <div style="text-align:center" *ngIf="isLoading">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+    <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+      <mat-form-field>
+        <input 
+        matInput
+        type="email"
+        name="email"
+        id="email"
+        ngModel 
+        required
+        email
+        #email 
+        placeholder="Please enter an Email">
+      </mat-form-field>
+      <mat-form-field>
+        <input 
+        matInput 
+        type="password" 
+        type="password"
+        name="password"
+        id="password"
+        #password
+        ngModel 
+        required
+        minlength="6"
+        placeholder="Your Password">
+      </mat-form-field>
+      <button 
+        mat-raised-button 
+        type="submit"
+        [disabled]="!authForm.valid || isLoading"
+        color="primary"
+        >{{!isLoginMode ? 'Login' : 'Sign Up'}}</button>
+      <button 
+        mat-raised-button 
+        type="button"
+        [disabled]="isLoading"
+        (click)="onSwitchMode()"
+        color="primary"
+        >Switch to {{ !isLoginMode ? 'Sign Up' : 'Login'}}</button>
+      
+    </form>
+  </mat-card>
+</div>

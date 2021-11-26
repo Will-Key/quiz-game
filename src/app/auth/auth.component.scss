@@ -1,0 +1,37 @@
+.container {
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .mat-card {
+    width: 20 rem;
+    border-radius: 0.5rem;
+    padding: 3rem;
+    .mat-card-title {
+      text-align: center;
+      font-size: 30px;
+    }
+    .mat-card-subtitle {
+      text-align: center;
+      font-size: 20px;
+      line-height: 30px;
+    }
+    .mat-card-subtitle {
+      padding-top: 1rem;
+    }
+    .mat-form-field {
+      margin: 0.5rem 0;
+      width: 100%;
+    }
+    button {
+      width: 40%;
+      margin: 10px 25px 10px;
+    }
+    .toggle {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 2rem;
+    }
+
+  }
+}

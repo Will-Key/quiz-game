@@ -1,0 +1,36 @@
+<div class="flex-container">
+  <div class="row">
+    <button 
+        style="float: bottom;"
+        mat-raised-button 
+        type="button"
+        (click)="makeQuiz()"
+        color="secondary"
+        >Make a quiz</button>
+  </div>
+  <div class="container" >
+    <div 
+      fxLayout="row wrap" 
+      fxLayoutGap="16px grid" 
+      style="width: 500px; height: 75px;">
+      <div style="text-align: center;" fxFlex="100%" *ngFor="let rank of dataSorted; let i = index">
+        <mat-card class="card" >
+          <mat-card-content>
+            <span style="font-size: 20px;">
+            {{rank.email == userData.email ? 'You' : rank.email.split('@')[0]}}
+
+            </span>
+            <button 
+            style="float: right;"
+            mat-fab
+            type="button"
+            color="primary"
+            style="cursor: default;"
+            >{{rank.score}}</button>
+          </mat-card-content>
+        </mat-card>
+    </div>
+    </div>
+  </div>
+  
+</div>

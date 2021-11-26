@@ -1,0 +1,27 @@
+<div class="container" id="container1">
+  <div class="row">
+    <h1>Hi {{username}},</h1>
+    <p>
+      {{welcomeMsg}}
+    </p>
+    <p>
+      {{principeMsg}}
+    </p>
+    <span>Click on the button below to {{momentMsg}} the quiz.</span>
+    <br><br><br>
+    <button 
+        style="float: left;"
+        mat-raised-button 
+        type="button"
+        (click)="ranking()"
+        color="secondary"
+        >Check ranking</button>
+    <button 
+        style="float: right;"
+        mat-raised-button 
+        type="button"
+        (click)="startQuiz()"
+        color="secondary"
+        >Start the Quiz</button>
+  </div>
+</div>
