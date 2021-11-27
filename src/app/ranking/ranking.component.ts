@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataStorageService } from '../shared/data-storage.service';
 
@@ -8,10 +8,10 @@ import { DataStorageService } from '../shared/data-storage.service';
   styleUrls: ['./ranking.component.scss']
 })
 export class RankingComponent implements OnInit {
-
   //username!: string | null
   dataSorted: any
   userData: any
+  isLoading: boolean = false
 
   constructor(
     private router: Router,
@@ -19,13 +19,14 @@ export class RankingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.isLoading = true
     this.userData = JSON.parse(localStorage.getItem('userData')!)
 
     this.dataStorageService.fetchAllQuizDone()
       .subscribe(
         async (allQuiz) => {
-          await this.formatedData(allQuiz!)
-          return await console.log(allQuiz)
+          this.isLoading = false
+          return await this.formatedData(allQuiz!)
         }
       )
   }
@@ -33,6 +34,7 @@ export class RankingComponent implements OnInit {
   makeQuiz() {
     this.router.navigate(['/start-quiz'])
   }
+
   private formatedData(data: any) {
     console.log(data)
     //let keys = []

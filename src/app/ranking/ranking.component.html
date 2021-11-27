@@ -1,4 +1,6 @@
+<app-header ></app-header>
 <div class="flex-container">
+  
   <div class="row">
     <button 
         style="float: bottom;"
@@ -6,7 +8,10 @@
         type="button"
         (click)="makeQuiz()"
         color="secondary"
-        >Make a quiz</button>
+        >Go to start Quiz</button>
+  </div>
+  <div style="text-align:center" *ngIf="isLoading">
+    <app-loading-spinner></app-loading-spinner>
   </div>
   <div class="container" >
     <div 
